@@ -101,6 +101,11 @@
     <img src="/img/pinterest.png" width="130" height="130" class="center"><br>
     <p style="color:black">Pinterest : the.stash</p></div>
 
+    <div class="card" >
+    <img src="/img/email.png" width="130" height="130" class="center"><br>
+    <p style="color:black">Email : stash@gmail.com</p></div>
+    </div>
+
 </div>
 </div>
 </div>
