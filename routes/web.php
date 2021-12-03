@@ -20,11 +20,14 @@ use Illuminate\Support\Facades\Auth;
 */
 
 Auth::routes();
+
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+
 Route::get('/', [WelcomeController::class, 'welcome'])->name('welcome.home');
 Route::get('/services', [WelcomeController::class, 'services'])->name('welcome.services');
 Route::get('/contactUs', [WelcomeController::class, 'contactUs'])->name('welcome.contactus');
 Route::get('/aboutUs', [WelcomeController::class, 'aboutUs'])->name('welcome.aboutus');
-Route::get('/home', [HomeController::class, 'index'])->name('home');
 Route::get('/loginFirst', [WelcomeController::class, 'redirectLogin'])->name('loginFirst');
 
 //UserAccess//Home
@@ -32,12 +35,18 @@ Route::get('/customer/home', [UserController::class, 'index'])->name('customer.h
 Route::post('/customer/editBioData/{customer}', [UserController::class, 'editCustomer'])->name('customer.editBioData')->middleware('UserAccess');
 Route::put('/customer/editImage/{customer}', [UserController::class, 'editCustomerImage'])->name('customer.editImage')->middleware('UserAccess');
 Route::post('/customer/defaultImage/{customer}', [UserController::class, 'editCustomerImageDefult'])->name('customer.defaultImage')->middleware('UserAccess');
+//UserAccess//Make Order
 Route::get('/chooseCity', [UserController::class, 'chooseCity'])->name('chooseCity')->middleware('UserAccess');
 Route::get('/chooseLocation', [UserController::class, 'chooseLocation'])->name('chooseLocation')->middleware('UserAccess');
 Route::get('/showUnits', [UserController::class, 'showUnits'])->name('showUnits')->middleware('UserAccess');
 Route::get('/OrderDetails', [UserController::class, 'makeOrderDetails'])->name('makeOrderDetails')->middleware('UserAccess');
 Route::post('/customer/addOrder', [UserController::class, 'addOrder'])->name('customer.addOrder')->middleware('UserAccess');
-
+//UserAccess//Orders
+Route::get('/user/orders', [UserController::class, 'orders'])->name('user.orders')->middleware('UserAccess');
+Route::get('/user/orders/viewOrderDetails/{order}', [UserController::class, 'viewOrderDetails'])->name('user.orderDetails')->middleware('UserAccess');
+Route::post('/user/orders/extendOrder/{order}', [UserController::class, 'extendOrder'])->name('user.extendOrder')->middleware('UserAccess');
+Route::post('/user/orders/changeOrderDescription/{order}', [UserController::class, 'changeOrderDescription'])->name('user.changeOrderDescription')->middleware('UserAccess');
+Route::delete('/user/orders/deleteOrder/{order}', [UserController::class, 'deleteOrder'])->name('user.deleteOrder')->middleware('UserAccess');
 
 //UserAccess//Categories
 Route::get('/user/categories', [UserController::class, 'showCategories'])->name('user.category')->middleware('UserAccess');
